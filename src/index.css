@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   /* Фиксированный резерв под скроллбар — без горизонтального «прыжка» при смене высоты страницы */
   scrollbar-gutter: stable;
+  /* iOS/TG: ускоряем распознавание вертикального скролла после быстрых свайпов */
+  touch-action: pan-y;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -14,10 +16,10 @@ html {
   }
 }
 
-/* Сенсорные устройства: плавный скролл по якорям даёт лишнюю работу композитору */
-@media (hover: none) and (pointer: coarse) {
+/* Smooth-скролл оставляем только для устройств с точным указателем (мышь), чтобы не мешать тач-жестам */
+@media (hover: hover) and (pointer: fine) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
 }
 

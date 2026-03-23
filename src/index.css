@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  /* Фиксированный резерв под скроллбар — без горизонтального «прыжка» при смене высоты страницы */
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 42 28% 97%;
+    --foreground: 28 18% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 28 18% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 28 18% 11%;
+
+    /* Акцент как у кнопки Яндекс.Карт (~#FC3F1E) */
+    --primary: 8 97% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 32% 88%;
+    --secondary-foreground: 28 22% 18%;
+
+    --muted: 40 18% 92%;
+    --muted-foreground: 28 10% 38%;
+
+    --accent: 8 42% 94%;
+    --accent-foreground: 28 18% 16%;
+
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 16% 82%;
+    --input: 35 16% 82%;
+    --ring: 8 97% 55%;
+
+    --radius: 1rem;
+
+    --surface: 42 24% 98%;
+    --surface-foreground: 28 18% 11%;
+    --on-surface: 28 18% 11%;
+    --on-surface-variant: 28 9% 38%;
+    --outline: 30 12% 72%;
+
+    --error: 4 78% 44%;
+    --error-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 264 12% 9%;
+    --foreground: 40 20% 95%;
+
+    --card: 264 10% 14%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 264 10% 14%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 8 88% 58%;
+    --primary-foreground: 8 40% 8%;
+
+    --secondary: 264 8% 22%;
+    --secondary-foreground: 40 20% 92%;
+
+    --muted: 264 8% 20%;
+    --muted-foreground: 40 12% 72%;
+
+    --accent: 8 35% 20%;
+    --accent-foreground: 40 20% 94%;
+
+    --destructive: 4 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 264 8% 24%;
+    --input: 264 8% 24%;
+    --ring: 8 88% 58%;
+
+    --surface: 264 10% 12%;
+    --surface-foreground: 40 18% 94%;
+    --on-surface: 40 18% 94%;
+    --on-surface-variant: 40 12% 72%;
+    --outline: 264 8% 38%;
+
+    --error: 4 78% 58%;
+    --error-foreground: 264 30% 8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  #root {
+    @apply min-h-screen w-full max-w-none;
+  }
+}
+
+.transition-bg {
+  transition-property: background-color, color, border-color;
+  transition-duration: 120ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Диалог «Заказать замер»: ровно по центру окна (атрибут open у <dialog>) */
+.measurement-order-dialog[open] {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(calc(100vw - 2rem), 26rem);
+  height: fit-content;
+  max-height: none;
+  overflow: visible;
+}
+
+.measurement-order-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+/* Полупрозрачные «стеклянные» панели поверх aurora: blur + градиент + блик сверху */
+@layer components {
+  .glass-panel {
+    @apply isolate overflow-hidden rounded-2xl border text-card-foreground;
+    border-color: hsl(var(--border) / 0.5);
+    background: linear-gradient(
+      168deg,
+      hsl(var(--card) / 0.78) 0%,
+      hsl(var(--card) / 0.42) 42%,
+      hsl(var(--muted) / 0.32) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.58),
+      0 4px 28px -6px rgb(0 0 0 / 0.1),
+      0 16px 56px -16px rgb(0 0 0 / 0.08);
+    -webkit-backdrop-filter: blur(22px) saturate(1.45);
+    backdrop-filter: blur(22px) saturate(1.45);
+  }
+
+  .dark .glass-panel {
+    border-color: hsl(var(--border) / 0.4);
+    background: linear-gradient(
+      168deg,
+      hsl(var(--card) / 0.52) 0%,
+      hsl(264 14% 12% / 0.62) 48%,
+      hsl(264 12% 7% / 0.78) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.1),
+      0 4px 32px -8px rgb(0 0 0 / 0.55),
+      0 20px 64px -20px rgb(0 0 0 / 0.35);
+    -webkit-backdrop-filter: blur(24px) saturate(1.35);
+    backdrop-filter: blur(24px) saturate(1.35);
+  }
+
+  .glass-nested {
+    @apply isolate overflow-hidden rounded-xl border text-card-foreground;
+    border-color: hsl(var(--border) / 0.4);
+    background: linear-gradient(
+      155deg,
+      hsl(var(--muted) / 0.55) 0%,
+      hsl(var(--muted) / 0.22) 100%
+    );
+    box-shadow: inset 0 1px 0 0 hsl(0 0% 100% / 0.32);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    backdrop-filter: blur(16px) saturate(1.3);
+  }
+
+  .dark .glass-nested {
+    border-color: hsl(var(--border) / 0.3);
+    background: linear-gradient(
+      155deg,
+      hsl(var(--muted) / 0.38) 0%,
+      hsl(264 10% 9% / 0.55) 100%
+    );
+    box-shadow: inset 0 1px 0 0 hsl(0 0% 100% / 0.06);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    backdrop-filter: blur(18px) saturate(1.25);
+  }
+
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .glass-panel {
+      @apply border-border/60 bg-card/95 shadow-elevation2;
+      background: hsl(var(--card) / 0.95);
+    }
+    .dark .glass-panel {
+      background: hsl(var(--card) / 0.95);
+    }
+    .glass-nested {
+      @apply bg-muted/50 shadow-none;
+    }
+    .dark .glass-nested {
+      @apply bg-muted/35;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass-panel,
+    .glass-nested {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .glass-panel {
+      @apply border-border/60 bg-card shadow-elevation2;
+      background: hsl(var(--card));
+    }
+    .dark .glass-panel {
+      background: hsl(var(--card));
+    }
+    .glass-nested {
+      @apply border-border/50 bg-muted/60;
+      background: hsl(var(--muted) / 0.65);
+    }
+    .dark .glass-nested {
+      background: hsl(var(--muted) / 0.45);
+    }
+  }
+}
+
+/* Aurora: при reduced-motion отключаем анимацию и ослабляем слой для CPU/GPU */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-layer {
+    opacity: 0.22 !important;
+  }
+  .aurora-layer::after {
+    animation: none !important;
+  }
+}

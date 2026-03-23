@@ -92,13 +92,13 @@ export function ContactBlock({ className }: { className?: string }) {
               VK
             </span>
             <a
-              className="mt-1 inline-flex items-center rounded-md text-primary underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="mt-1 block rounded-md text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               href={VK_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Открыть VK (новая вкладка)"
             >
-              @mebelshikyaroslavl
+              vk.ru/mebelshikyaroslavl
             </a>
           </div>
         </li>

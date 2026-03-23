@@ -18,6 +18,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { NAV_ITEMS } from "@/config/nav";
 import { useTheme } from "@/hooks/use-theme";
 import { preloadRoute } from "@/lib/route-preload";
+import { publicUrl } from "@/lib/public-url";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
@@ -142,24 +143,21 @@ export function SiteLayout() {
               aria-label="Мобильная навигация"
             >
               {NAV_ITEMS.map((item) => (
-                <NavLink
+                <a
                   key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  onClick={() => setMobileOpen(false)}
+                  href={publicUrl(item.to)}
                   onMouseEnter={() => preloadRoute(item.to)}
                   onFocus={() => preloadRoute(item.to)}
-                  className={({ isActive }) =>
-                    cn(
-                      "rounded-xl px-3 py-3 text-base font-medium transition-colors duration-75 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                      isActive
-                        ? "bg-accent text-on-surface"
-                        : "text-on-surface hover:bg-accent"
-                    )
-                  }
+                  className={cn(
+                    "rounded-xl px-3 py-3 text-base font-medium transition-colors duration-75 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    location.pathname === item.to
+                      ? "bg-accent text-on-surface"
+                      : "text-on-surface hover:bg-accent"
+                  )}
+                  onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
-                </NavLink>
+                </a>
               ))}
             </nav>
           ) : null}

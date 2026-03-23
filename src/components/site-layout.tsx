@@ -57,12 +57,6 @@ export function SiteLayout() {
   return (
     <AuroraBackground className="items-stretch justify-start">
       <ScrollToTop />
-      <a
-        href="#main"
-        className="hidden md:block pointer-events-auto fixed left-4 top-4 z-[60] -translate-y-16 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-elevation2 transition focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-ring"
-      >
-        К содержанию
-      </a>
 
       <div
         className="relative z-10 flex w-full max-w-6xl flex-col px-4 pb-28 pt-4 md:mx-auto md:px-6 md:pb-24 md:pt-6"

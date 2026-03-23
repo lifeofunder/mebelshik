@@ -1,6 +1,7 @@
-import { Clock, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { Clock, Mail, MapPin, MessageSquare, Phone, Sparkles } from "lucide-react";
 
 const OFFICE_ADDRESS = "Ярославль, ул. Вспольинское поле, 14";
+const VK_URL = "https://vk.ru/mebelshikyaroslavl";
 
 const YANDEX_MAPS_URL = `https://yandex.ru/maps/?text=${encodeURIComponent(OFFICE_ADDRESS)}`;
 
@@ -78,6 +79,26 @@ export function ContactBlock({ className }: { className?: string }) {
               href="mailto:a331816@yandex.ru"
             >
               a331816@yandex.ru
+            </a>
+          </div>
+        </li>
+        <li className="flex gap-3">
+          <MessageSquare
+            className="mt-0.5 size-5 shrink-0 text-primary"
+            aria-hidden
+          />
+          <div>
+            <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              VK
+            </span>
+            <a
+              className="mt-1 inline-flex items-center rounded-md text-primary underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              href={VK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Открыть VK (новая вкладка)"
+            >
+              @mebelshikyaroslavl
             </a>
           </div>
         </li>

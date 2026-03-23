@@ -176,14 +176,14 @@ export function SiteLayout() {
           {isContactsRoute ? (
             <div className="min-w-0 lg:col-span-2 lg:flex lg:justify-center">
               <Suspense fallback={<RouteFallback />}>
-                <Outlet />
+                <Outlet key={location.pathname} />
               </Suspense>
             </div>
           ) : (
             <>
               <div className="min-w-0">
                 <Suspense fallback={<RouteFallback />}>
-                  <Outlet />
+                  <Outlet key={location.pathname} />
                 </Suspense>
               </div>
 

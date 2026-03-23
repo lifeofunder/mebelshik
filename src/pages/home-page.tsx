@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { CABINET_IMG, HERO_HOME_IMG, WOOD_MATERIALS_IMG } from "@/content/media";
+import { HERO_HOME_IMG, PRODUCTS_SECTION_IMG, WOOD_MATERIALS_IMG } from "@/content/media";
 
 export function HomePage() {
   return (
@@ -99,14 +99,17 @@ export function HomePage() {
 
           <figure className="glass-panel overflow-hidden p-0">
             <img
-              src={CABINET_IMG}
-              alt="Светлые кухонные фасады и рабочая зона"
-              className="aspect-video w-full object-cover"
-              loading="eager"
+              src={PRODUCTS_SECTION_IMG}
+              alt="Современное кресло-стул из дерева со светлой обивкой в интерьере кухни-столовой"
+              className="aspect-[3/4] w-full object-cover object-[52%_45%] sm:aspect-[4/3] md:aspect-[16/9] md:max-h-[22rem] lg:max-h-[26rem]"
+              width={900}
+              height={1200}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              loading="lazy"
               decoding="async"
             />
             <figcaption className="border-t border-border/40 px-4 py-3 text-sm text-muted-foreground">
-              Корпусная мебель на заказ — от кухонь до шкафов и офисных решений.
+              Продукция на заказ — кухни, шкафы, столы и кресла в едином стиле с вашим интерьером.
             </figcaption>
           </figure>
 

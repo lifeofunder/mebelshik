@@ -1,7 +1,8 @@
 import { publicUrl } from "@/lib/public-url";
 
-export const KITCHEN_IMG =
-  "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80";
+/** Главный hero на главной: `public/images/hero-home.png` */
+export const HERO_HOME_IMG = publicUrl("/images/hero-home.png");
+
 export const CABINET_IMG =
   "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80";
 

@@ -6,19 +6,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { CABINET_IMG, KITCHEN_IMG, WOOD_MATERIALS_IMG } from "@/content/media";
+import { CABINET_IMG, HERO_HOME_IMG, WOOD_MATERIALS_IMG } from "@/content/media";
 
 export function HomePage() {
   return (
     <article id="main" className="min-w-0 scroll-mt-32">
       <Card className="overflow-hidden">
-        <div className="relative aspect-[21/9] max-h-56 w-full overflow-hidden md:max-h-72">
+        <div className="relative aspect-[3/4] w-full overflow-hidden sm:aspect-[16/9] md:aspect-[21/9] md:max-h-[22rem] lg:max-h-[26rem]">
           <img
-            src={KITCHEN_IMG}
-            alt=""
-            className="h-full w-full object-cover"
-            width={1600}
-            height={686}
+            src={HERO_HOME_IMG}
+            alt="Кухня на заказ: белые фасады, деревянная столешница, современный интерьер"
+            className="h-full w-full object-cover object-[50%_38%]"
+            width={1200}
+            height={1600}
             sizes="100vw"
             loading="eager"
             decoding="async"

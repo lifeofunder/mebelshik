@@ -1,17 +1,27 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const STORAGE_KEY = "mebel-theme";
+/** Ручной выбор темы только на время визита (вкладка). После закрытия — снова системная. */
+const SESSION_OVERRIDE_KEY = "mebel-theme-override";
+
+/** Старый ключ — больше не используем, чтобы не «залипала» тема между визитами */
+const LEGACY_LOCAL_KEY = "mebel-theme";
 
 export type ThemeMode = "system" | "light" | "dark";
 
-function readStoredMode(): ThemeMode {
-  if (typeof window === "undefined") return "system";
+function readSessionOverride(): "light" | "dark" | null {
+  if (typeof window === "undefined") return null;
   try {
-    const v = localStorage.getItem(STORAGE_KEY);
-    if (v === "dark" || v === "light" || v === "system") return v;
+    const v = sessionStorage.getItem(SESSION_OVERRIDE_KEY);
+    if (v === "dark" || v === "light") return v;
   } catch {
     /* ignore */
   }
+  return null;
+}
+
+function initialMode(): ThemeMode {
+  const o = readSessionOverride();
+  if (o === "light" || o === "dark") return o;
   return "system";
 }
 
@@ -21,8 +31,16 @@ function getSystemDark(): boolean {
 }
 
 export function useTheme() {
-  const [mode, setMode] = useState<ThemeMode>(() => readStoredMode());
+  const [mode, setMode] = useState<ThemeMode>(() => initialMode());
   const [systemDark, setSystemDark] = useState(getSystemDark);
+
+  useEffect(() => {
+    try {
+      localStorage.removeItem(LEGACY_LOCAL_KEY);
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -41,7 +59,11 @@ export function useTheme() {
     if (isDark) root.classList.add("dark");
     else root.classList.remove("dark");
     try {
-      localStorage.setItem(STORAGE_KEY, mode);
+      if (mode === "system") {
+        sessionStorage.removeItem(SESSION_OVERRIDE_KEY);
+      } else {
+        sessionStorage.setItem(SESSION_OVERRIDE_KEY, mode);
+      }
     } catch {
       /* ignore */
     }

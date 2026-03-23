@@ -3,9 +3,11 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
-// base: "/" по умолчанию; для деплоя в подпапку CDN задайте, например, base: "/m3-article/"
+// GitHub Pages: проектный сайт lifeofunder.github.io/mebelshik/ → base "/mebelshik/"
+// Локально (vite dev) base остаётся "/".
 // public готовится скриптом prepare-public (копия без проблемного корневого wood-materials.jpg)
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === "serve" ? "/" : "/mebelshik/",
   publicDir: path.resolve(__dirname, ".public-filtered"),
   plugins: [react()],
   resolve: {
@@ -37,4 +39,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

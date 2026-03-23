@@ -24,9 +24,11 @@ const ContactsPage = lazy(() =>
   import("@/pages/contacts-page").then((m) => ({ default: m.ContactsPage }))
 );
 
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename || undefined}>
       <Routes>
         <Route element={<SiteLayout />}>
           <Route index element={<HomePage />} />

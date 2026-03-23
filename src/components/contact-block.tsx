@@ -1,4 +1,13 @@
-import { Clock, Mail, MapPin, MessageSquare, Phone, Sparkles } from "lucide-react";
+import {
+  Call02Icon,
+  Clock01Icon,
+  Location01Icon,
+  Mail01Icon,
+  Message01Icon,
+  SparklesIcon,
+} from "@hugeicons/core-free-icons";
+
+import { HugeIcon } from "@/components/ui/huge-icon";
 
 const OFFICE_ADDRESS = "Ярославль, ул. Вспольинское поле, 14";
 const VK_URL = "https://vk.ru/mebelshikyaroslavl";
@@ -24,8 +33,10 @@ export function ContactBlock({ className }: { className?: string }) {
     >
       <ul className="flex flex-col gap-4">
         <li className="flex gap-3">
-          <Phone
-            className="mt-0.5 size-5 shrink-0 text-primary"
+          <HugeIcon
+            icon={Call02Icon}
+            size={20}
+            className="mt-0.5 text-primary"
             aria-hidden
           />
           <div className="flex flex-col gap-1">
@@ -47,8 +58,10 @@ export function ContactBlock({ className }: { className?: string }) {
           </div>
         </li>
         <li className="flex gap-3">
-          <MapPin
-            className="mt-0.5 size-5 shrink-0 text-primary"
+          <HugeIcon
+            icon={Location01Icon}
+            size={20}
+            className="mt-0.5 text-primary"
             aria-hidden
           />
           <div>
@@ -69,7 +82,12 @@ export function ContactBlock({ className }: { className?: string }) {
           </div>
         </li>
         <li className="flex gap-3">
-          <Mail className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+          <HugeIcon
+            icon={Mail01Icon}
+            size={20}
+            className="mt-0.5 text-primary"
+            aria-hidden
+          />
           <div>
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               Email
@@ -83,8 +101,10 @@ export function ContactBlock({ className }: { className?: string }) {
           </div>
         </li>
         <li className="flex gap-3">
-          <MessageSquare
-            className="mt-0.5 size-5 shrink-0 text-primary"
+          <HugeIcon
+            icon={Message01Icon}
+            size={20}
+            className="mt-0.5 text-primary"
             aria-hidden
           />
           <div>
@@ -103,8 +123,10 @@ export function ContactBlock({ className }: { className?: string }) {
           </div>
         </li>
         <li className="flex gap-3">
-          <Sparkles
-            className="mt-0.5 size-5 shrink-0 text-primary"
+          <HugeIcon
+            icon={SparklesIcon}
+            size={20}
+            className="mt-0.5 text-primary"
             aria-hidden
           />
           <div>
@@ -117,7 +139,12 @@ export function ContactBlock({ className }: { className?: string }) {
           </div>
         </li>
         <li className="flex gap-3">
-          <Clock className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+          <HugeIcon
+            icon={Clock01Icon}
+            size={20}
+            className="mt-0.5 text-primary"
+            aria-hidden
+          />
           <div className="flex min-w-0 flex-col gap-3">
             <div>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">

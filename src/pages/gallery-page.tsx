@@ -1,9 +1,14 @@
-import { ChevronRight, FolderOpen, ImageOff } from "lucide-react";
+import {
+  ArrowRight01Icon,
+  Folder01Icon,
+  ImageRemove01Icon,
+} from "@hugeicons/core-free-icons";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ImageLightbox, type LightboxItem } from "@/components/image-lightbox";
 import { Button } from "@/components/ui/button";
+import { HugeIcon } from "@/components/ui/huge-icon";
 import {
   Card,
   CardContent,
@@ -60,7 +65,11 @@ export function GalleryPage() {
                       className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary shadow-elevation1"
                       aria-hidden
                     >
-                      <FolderOpen className="size-6" strokeWidth={1.75} />
+                      <HugeIcon
+                        icon={Folder01Icon}
+                        size={24}
+                        strokeWidth={1.75}
+                      />
                     </span>
                     {hasMore ? (
                       <Link
@@ -77,7 +86,7 @@ export function GalleryPage() {
                     <Button variant="outline" size="sm" className="gap-1" asChild>
                       <Link to={folderPath}>
                         Смотреть все ({category.images.length})
-                        <ChevronRight className="size-4" aria-hidden />
+                        <HugeIcon icon={ArrowRight01Icon} size={16} aria-hidden />
                       </Link>
                     </Button>
                   ) : null}
@@ -143,7 +152,12 @@ export function GalleryPage() {
                   </>
                 ) : (
                   <div className="glass-nested flex flex-col items-center gap-3 border-dashed border-border/60 px-4 py-10 text-center text-sm text-muted-foreground">
-                    <ImageOff className="size-9 opacity-45" aria-hidden />
+                    <HugeIcon
+                      icon={ImageRemove01Icon}
+                      size={36}
+                      className="opacity-45"
+                      aria-hidden
+                    />
                     <p>В этой папке пока нет фотографий.</p>
                   </div>
                 )}

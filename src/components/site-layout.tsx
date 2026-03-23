@@ -1,4 +1,11 @@
-import { Menu, Moon, Phone, Ruler, Sun, X } from "lucide-react";
+import {
+  Call02Icon,
+  Cancel01Icon,
+  Menu01Icon,
+  Moon01Icon,
+  Sun01Icon,
+  TapeMeasureIcon,
+} from "@hugeicons/core-free-icons";
 import type { CSSProperties } from "react";
 import { Suspense, useLayoutEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
@@ -6,6 +13,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { RouteFallback } from "@/components/route-fallback";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Button } from "@/components/ui/button";
+import { HugeIcon } from "@/components/ui/huge-icon";
 import {
   Card,
   CardContent,
@@ -118,7 +126,11 @@ export function SiteLayout() {
                   isDark ? "Включить светлую тему" : "Включить тёмную тему"
                 }
               >
-                {isDark ? <Sun aria-hidden /> : <Moon aria-hidden />}
+                {isDark ? (
+                  <HugeIcon icon={Sun01Icon} size={16} aria-hidden />
+                ) : (
+                  <HugeIcon icon={Moon01Icon} size={16} aria-hidden />
+                )}
               </Button>
 
               <Button
@@ -131,7 +143,11 @@ export function SiteLayout() {
                 aria-controls="mobile-nav"
                 aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
               >
-                {mobileOpen ? <X aria-hidden /> : <Menu aria-hidden />}
+                {mobileOpen ? (
+                  <HugeIcon icon={Cancel01Icon} size={16} aria-hidden />
+                ) : (
+                  <HugeIcon icon={Menu01Icon} size={16} aria-hidden />
+                )}
               </Button>
             </div>
           </div>
@@ -231,7 +247,7 @@ export function SiteLayout() {
           aria-haspopup="dialog"
           onClick={() => setMeasureDialogOpen(true)}
         >
-          <Ruler className="size-4 shrink-0" aria-hidden />
+          <HugeIcon icon={TapeMeasureIcon} size={16} className="shrink-0" aria-hidden />
           Заказать замер
         </Button>
         <MeasurementOrderDialog
@@ -248,7 +264,7 @@ export function SiteLayout() {
             href="tel:+74852909060"
             className="inline-flex min-h-11 min-w-[44px] items-center justify-center gap-2 px-4"
           >
-            <Phone className="size-4" aria-hidden />
+            <HugeIcon icon={Call02Icon} size={16} aria-hidden />
             90-90-60
           </a>
         </Button>

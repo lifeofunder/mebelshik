@@ -1,9 +1,14 @@
-import { ArrowLeft, FolderOpen, ImageOff } from "lucide-react";
+import {
+  ArrowLeft01Icon,
+  Folder01Icon,
+  ImageRemove01Icon,
+} from "@hugeicons/core-free-icons";
 import { useState } from "react";
 import { Navigate, Link as RouterLink, useParams } from "react-router-dom";
 
 import { ImageLightbox, type LightboxItem } from "@/components/image-lightbox";
 import { Button } from "@/components/ui/button";
+import { HugeIcon } from "@/components/ui/huge-icon";
 import {
   Card,
   CardContent,
@@ -30,7 +35,7 @@ export function GalleryFolderPage() {
         <CardHeader className="space-y-4">
           <Button variant="ghost" className="w-fit gap-2 px-2 -ml-2" asChild>
             <RouterLink to="/galereya">
-              <ArrowLeft className="size-4" aria-hidden />
+              <HugeIcon icon={ArrowLeft01Icon} size={16} aria-hidden />
               Все папки галереи
             </RouterLink>
           </Button>
@@ -39,7 +44,11 @@ export function GalleryFolderPage() {
               className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary shadow-elevation1"
               aria-hidden
             >
-              <FolderOpen className="size-7" strokeWidth={1.75} />
+              <HugeIcon
+                icon={Folder01Icon}
+                size={28}
+                strokeWidth={1.75}
+              />
             </span>
             <div>
               <CardTitle className="text-2xl md:text-3xl">{title}</CardTitle>
@@ -80,7 +89,12 @@ export function GalleryFolderPage() {
             </ul>
           ) : (
             <div className="glass-nested flex flex-col items-center gap-3 border-dashed border-border/55 px-4 py-14 text-center text-sm text-muted-foreground">
-              <ImageOff className="size-10 opacity-45" aria-hidden />
+              <HugeIcon
+                icon={ImageRemove01Icon}
+                size={40}
+                className="opacity-45"
+                aria-hidden
+              />
               <p>В этой папке пока нет фотографий.</p>
               <Button variant="outline" asChild>
                 <RouterLink to="/galereya">Назад к галерее</RouterLink>

@@ -1,8 +1,9 @@
-import { X } from "lucide-react";
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "@/components/ui/button";
+import { HugeIcon } from "@/components/ui/huge-icon";
 import { cn } from "@/lib/utils";
 
 export type LightboxItem = { src: string; alt: string };
@@ -64,7 +65,7 @@ export function ImageLightbox({ item, onClose, className }: ImageLightboxProps) 
         }}
         aria-label="Закрыть"
       >
-        <X className="size-5" aria-hidden />
+        <HugeIcon icon={Cancel01Icon} size={20} aria-hidden />
       </Button>
     </div>,
     document.body

@@ -1,7 +1,8 @@
-import { X } from "lucide-react";
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { HugeIcon } from "@/components/ui/huge-icon";
 import { MeasurementOrderForm } from "@/components/measurement-order-form";
 
 type Props = {
@@ -56,7 +57,7 @@ export function MeasurementOrderDialog({ open, onOpenChange }: Props) {
               dialogRef.current?.close();
             }}
           >
-            <X className="size-5" aria-hidden />
+            <HugeIcon icon={Cancel01Icon} size={20} aria-hidden />
           </Button>
         </div>
 

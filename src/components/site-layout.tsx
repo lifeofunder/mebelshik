@@ -38,12 +38,20 @@ export function SiteLayout() {
   useLayoutEffect(() => {
     const el = headerRef.current;
     if (!el) return;
-    const measure = () =>
-      setHeaderH(Math.ceil(el.getBoundingClientRect().height));
+    let raf = 0;
+    const measure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setHeaderH(Math.ceil(el.getBoundingClientRect().height));
+      });
+    };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
   }, [mobileOpen]);
 
   return (

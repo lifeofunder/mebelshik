@@ -33,7 +33,7 @@ export function ImageLightbox({ item, onClose, className }: ImageLightboxProps) 
   return createPortal(
     <div
       className={cn(
-        "fixed inset-0 z-[100] flex cursor-default items-center justify-center bg-black/40 p-4 backdrop-blur-xl backdrop-saturate-150 dark:bg-black/50 dark:backdrop-blur-2xl sm:p-6",
+        "fixed inset-0 z-[100] flex cursor-default items-center justify-center bg-black/70 p-4 backdrop-blur-none dark:bg-black/75 md:bg-black/40 md:backdrop-blur-xl md:backdrop-saturate-150 dark:md:bg-black/50 dark:md:backdrop-blur-2xl sm:p-6",
         className
       )}
       role="dialog"
@@ -57,7 +57,7 @@ export function ImageLightbox({ item, onClose, className }: ImageLightboxProps) 
         type="button"
         variant="secondary"
         size="icon"
-        className="pointer-events-auto absolute right-[max(1rem,env(safe-area-inset-right,0px))] top-[max(1rem,env(safe-area-inset-top,0px))] z-20 size-11 rounded-full border border-border/60 bg-surface/90 shadow-fab backdrop-blur-sm dark:bg-surface/90"
+        className="pointer-events-auto absolute right-[max(1rem,env(safe-area-inset-right,0px))] top-[max(1rem,env(safe-area-inset-top,0px))] z-20 size-11 rounded-full border border-border/60 bg-surface shadow-fab md:bg-surface/90 md:backdrop-blur-sm dark:bg-surface dark:md:bg-surface/90"
         onClick={(e) => {
           e.stopPropagation();
           onClose();

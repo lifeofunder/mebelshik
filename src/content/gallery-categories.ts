@@ -96,8 +96,14 @@ export const GALLERY_CATEGORIES: readonly GalleryCategory[] = [
   { id: "stoly", title: "Столы", images: stolyGalleryImages() },
 ];
 
-/** Сколько превью показывать на общей странице галереи */
-export const GALLERY_PREVIEW_LIMIT = 3;
+/** Превью на странице «Галерея»: на ПК — 3, на телефоне — 4 (см. gallery-page). */
+export const GALLERY_PREVIEW_LIMIT_DESKTOP = 3;
+export const GALLERY_PREVIEW_LIMIT_MOBILE = 4;
+/** Максимум миниатюр в данных (берём запас под мобильную сетку 2×2). */
+export const GALLERY_PREVIEW_SLICE = Math.max(
+  GALLERY_PREVIEW_LIMIT_DESKTOP,
+  GALLERY_PREVIEW_LIMIT_MOBILE
+);
 
 export function getGalleryCategory(
   id: string

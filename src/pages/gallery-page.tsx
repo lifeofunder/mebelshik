@@ -13,7 +13,8 @@ import {
 } from "@/components/ui/card";
 import {
   GALLERY_CATEGORIES,
-  GALLERY_PREVIEW_LIMIT,
+  GALLERY_PREVIEW_LIMIT_DESKTOP,
+  GALLERY_PREVIEW_SLICE,
 } from "@/content/gallery-categories";
 
 export function GalleryPage() {
@@ -25,15 +26,22 @@ export function GalleryPage() {
         <CardHeader>
           <CardTitle className="text-2xl md:text-3xl">Галерея</CardTitle>
           <CardDescription className="text-base">
-            В каждой папке на этой странице — первые {GALLERY_PREVIEW_LIMIT}{" "}
-            фото. Остальные откройте, перейдя в папку.
+            В превью — до четырёх фото на телефоне и до трёх на большом экране;
+            остальные откройте внутри папки.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-10">
           {GALLERY_CATEGORIES.map((category) => {
-            const preview = category.images.slice(0, GALLERY_PREVIEW_LIMIT);
-            const rest = category.images.length - GALLERY_PREVIEW_LIMIT;
-            const hasMore = rest > 0;
+            const preview = category.images.slice(0, GALLERY_PREVIEW_SLICE);
+            const restDesktop = Math.max(
+              0,
+              category.images.length - GALLERY_PREVIEW_LIMIT_DESKTOP
+            );
+            const restMobile = Math.max(
+              0,
+              category.images.length - GALLERY_PREVIEW_SLICE
+            );
+            const hasMore = restDesktop > 0;
             const folderPath = `/galereya/${category.id}`;
 
             return (
@@ -77,34 +85,52 @@ export function GalleryPage() {
 
                 {preview.length > 0 ? (
                   <>
-                    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                      {preview.map((img) => (
+                    <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                      {preview.map((img, index) => (
                         <li
                           key={img.src}
-                          className="overflow-hidden rounded-xl border border-border/50 shadow-elevation1"
+                          className={
+                            index === GALLERY_PREVIEW_SLICE - 1
+                              ? "md:hidden"
+                              : undefined
+                          }
                         >
-                          <button
-                            type="button"
-                            className="block w-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
-                            onClick={() =>
-                              setLightbox({ src: img.src, alt: img.alt })
-                            }
-                            aria-label={`Открыть фото: ${img.alt}`}
-                          >
-                            <img
-                              src={img.src}
-                              alt={img.alt}
-                              className="aspect-[4/3] w-full cursor-zoom-in object-cover"
-                              loading="eager"
-                              decoding="async"
-                            />
-                          </button>
+                          <div className="overflow-hidden rounded-xl border border-border/50 shadow-elevation1">
+                            <button
+                              type="button"
+                              className="block w-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+                              onClick={() =>
+                                setLightbox({ src: img.src, alt: img.alt })
+                              }
+                              aria-label={`Открыть фото: ${img.alt}`}
+                            >
+                              <img
+                                src={img.src}
+                                alt={img.alt}
+                                className="aspect-[4/3] w-full cursor-zoom-in object-cover"
+                                loading={index < 2 ? "eager" : "lazy"}
+                                decoding="async"
+                              />
+                            </button>
+                          </div>
                         </li>
                       ))}
                     </ul>
-                    {hasMore ? (
-                      <p className="mt-3 text-sm text-muted-foreground">
-                        Ещё {rest} {pluralizePhotos(rest)} — в папке «
+                    {hasMore && restMobile > 0 ? (
+                      <p className="mt-3 text-sm text-muted-foreground md:hidden">
+                        Ещё {restMobile} {pluralizePhotos(restMobile)} — в папке «
+                        <Link
+                          to={folderPath}
+                          className="font-medium text-primary underline-offset-4 hover:underline"
+                        >
+                          {category.title}
+                        </Link>
+                        ».
+                      </p>
+                    ) : null}
+                    {hasMore && restDesktop > 0 ? (
+                      <p className="mt-3 hidden text-sm text-muted-foreground md:block">
+                        Ещё {restDesktop} {pluralizePhotos(restDesktop)} — в папке «
                         <Link
                           to={folderPath}
                           className="font-medium text-primary underline-offset-4 hover:underline"

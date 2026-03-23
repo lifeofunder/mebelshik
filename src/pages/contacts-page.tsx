@@ -27,7 +27,7 @@ export function ContactsPage() {
           <ContactBlock className="text-base" />
           <p className="glass-nested border-primary/35 p-4 text-card-foreground dark:border-primary/28">
             <strong className="font-medium text-primary">Бесплатно:</strong> замер и
-            эскиз проекта — оставьте заявку по телефону, по почту или через форму ниже.
+            эскиз проекта — оставьте заявку по телефону, по почте или через форму ниже.
           </p>
 
           <section

@@ -207,8 +207,7 @@ export function SiteLayout() {
                   className="pointer-events-auto fixed z-30 w-[320px] max-h-[calc(100dvh-8.5rem)] overflow-hidden rounded-2xl lg:right-[max(1rem,calc((100vw-min(100vw,72rem))/2+1.5rem))] lg:top-[calc(1.5rem+var(--site-header-h,4.75rem)+1.5rem)]"
                   aria-label="Контакты"
                 >
-                  {/* Прокрутка внутри: иначе overflow-y-auto на aside «режет» backdrop blur прямыми углами */}
-                  <div className="max-h-[calc(100dvh-8.5rem)] overflow-y-auto overscroll-y-contain">
+                  <div className="max-h-[calc(100dvh-8.5rem)] overflow-hidden">
                     <Card className="rounded-none border-0 shadow-none ring-0">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-lg font-semibold text-primary md:text-xl">

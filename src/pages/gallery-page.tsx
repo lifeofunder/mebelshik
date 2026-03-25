@@ -12,7 +12,6 @@ import { HugeIcon } from "@/components/ui/huge-icon";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -30,10 +29,6 @@ export function GalleryPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl md:text-3xl">Галерея</CardTitle>
-          <CardDescription className="text-base">
-            В превью — до четырёх фото на телефоне и до трёх на большом экране;
-            остальные откройте внутри папки.
-          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-10">
           {GALLERY_CATEGORIES.map((category) => {
